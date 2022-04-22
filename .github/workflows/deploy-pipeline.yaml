@@ -77,14 +77,18 @@ jobs:
     runs-on: ubuntu-latest
     needs: publish
     steps:
+      - name: Uninstall AWS CLI
+        run: |
+          sudo rm /usr/local/bin/aws
+          sudo rm /usr/local/bin/aws_completer
+          sudo rm -rf /usr/local/aws-cli
+          sudo rm ~/.aws/
       - name: Download AWS CLI
         run: curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
       - name: Unzip AWS CLI
         run: unzip awscliv2.zip
       - name: Install AWS CLI
-        run: |
-          sudo ./aws/uninstall
-          sudo ./aws/install
+        run: sudo ./aws/install
       - name: Configure AWS CLI
         run: |
           export AWS_ACCESS_KEY_ID = ${{ secrets.AWS_ACCESS_KEY_ID }}
