@@ -79,9 +79,8 @@ jobs:
         run: |
           aws lambda create-function --function-name test-funtcion \
           --code S3Bucket=ashok-github-actions-sample,S3Key=${{ github.sha }}.zip \
-          --handler lambda_function.lambda_handler --runtime=Python3.8 \
+          --handler lambda_function.lambda_handler --runtime=python3.8 \
           --role arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/ashok-github-actions-lambda-role
-          
   deploy:
       runs-on: ubuntu-latest
       needs: tests
