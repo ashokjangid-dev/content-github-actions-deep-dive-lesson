@@ -73,9 +73,6 @@ jobs:
       matrix:
         input: ["Hello", "Hi"]
     steps:
-      - name: Configure AWS credentials
-        input: ["Hello","Hi"]
-    steps:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
